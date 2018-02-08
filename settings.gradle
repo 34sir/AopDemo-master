@@ -1,1 +1,1 @@
-include ':app', ':buildSrc', ':libaop'
+include ':app', ':buildSrc', ':libaop', ':libtask'

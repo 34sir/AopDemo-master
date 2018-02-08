@@ -1,14 +1,15 @@
+import org.gradle.api.tasks.Optional
+
 // Top-level build file where you can add configuration options common to all sub-projects/modules.
 
 buildscript {
-    
+
     repositories {
         google()
         jcenter()
     }
     dependencies {
         classpath 'com.android.tools.build:gradle:2.3.3'
-        
 
         // NOTE: Do not place your application dependencies here; they belong
         // in the individual module build.gradle files
@@ -25,3 +26,62 @@ allprojects {
 task clean(type: Delete) {
     delete rootProject.buildDir
 }
+
+task haha {
+    println "HAHA"
+}
+
+task hello << {
+    println "hello,world"
+}
+
+// 需要继承自DefaultTask
+class HelloTask extends DefaultTask {
+    // @Optional 表示在配置该Task时，message是可选的。
+    @Optional
+    String message = 'I am 34sir'
+    // @TaskAction 表示该Task要执行的动作,即在调用该Task时，hello()方法将被执行
+    @TaskAction
+    def hello() {
+        println "$message"
+    }
+
+    @Override
+    void onlyIf(Spec<? super Task> onlyIfSpec) {
+
+    }
+
+    @Override
+    void setOnlyIf(Spec<? super Task> onlyIfSpec) {
+
+    }
+
+    @Override
+    Task doFirst(Action<? super Task> action) {
+        return null
+    }
+
+    @Override
+    Task doLast(Action<? super Task> action) {
+        return null
+    }
+
+    @Override
+    int compareTo(Task task) {
+        return 0
+    }
+
+    @Override
+    void setActions(List<Action<? super Task>> actions) {
+
+    }
+}
+
+// hello使用了默认的message值
+task helloOne(type: HelloTask)
+
+// 重新设置了message的值
+task helloTwo(type: HelloTask) {
+    message = "你站在这别动，我去给你买橘子"
+}
+
