@@ -37,6 +37,11 @@ class AopPlugin implements Plugin<Project> {
 
     variants.all { variant ->
 
+      if (!variant.buildType.isDebuggable()) {
+        log.debug("Skipping non-debuggable build type '${variant.buildType.name}'.")
+        return;
+      }
+
       JavaCompile javaCompile = variant.javaCompile
       javaCompile.doLast {
         println("hello aop")

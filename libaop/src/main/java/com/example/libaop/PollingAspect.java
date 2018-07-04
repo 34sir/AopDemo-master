@@ -1,8 +1,8 @@
 package com.example.libaop;
 
 
-import com.example.libaop.annotation.Polling;
-import com.example.libaop.annotation.StopPolling;
+import com.example.libaop.annotation.polling.Polling;
+import com.example.libaop.annotation.polling.StopPolling;
 
 import org.aspectj.lang.ProceedingJoinPoint;
 import org.aspectj.lang.annotation.Around;
@@ -24,7 +24,7 @@ public class PollingAspect {
         pollingMethod(joinPoint);
     }
 
-    @Pointcut("@within(com.example.libaop.annotation.Polling)||@annotation(com.example.libaop.annotation.Polling)")
+    @Pointcut("@within(com.example.libaop.annotation.polling.Polling)||@annotation(com.example.libaop.annotation.polling.Polling)")
     public void onPollingMethod() {
     }
     @Around("execution(!synthetic * *(..)) && onStopPollingMethod()")
@@ -32,7 +32,7 @@ public class PollingAspect {
         stopPollingMethod(joinPoint);
     }
 
-    @Pointcut("@within(com.example.libaop.annotation.StopPolling)||@annotation(com.example.libaop.annotation.StopPolling)")
+    @Pointcut("@within(com.example.libaop.annotation.polling.StopPolling)||@annotation(com.example.libaop.annotation.polling.StopPolling)")
     public void onStopPollingMethod() {
     }
 

@@ -16,11 +16,26 @@ android {
 
     }
     buildTypes {
+        debug{
+            debuggable true
+        }
         release {
             minifyEnabled false
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
         }
     }
+
+    productFlavors{
+        create('all'){
+
+        }
+    }
+    publishNonDefault true
+}
+
+configurations {
+    allDebug
+    allRelease
 }
 
 dependencies {
@@ -31,7 +46,7 @@ dependencies {
     compile 'com.android.support:appcompat-v7:26.+'
     testCompile 'junit:junit:4.12'
 
-    compile 'org.aspectj:aspectjrt:1.8.+'
-    compile 'tony-common:tony-common-utils:1.2.0'
+//    compile 'org.aspectj:aspectjrt:1.8.+'
+//    compile 'tony-common:tony-common-utils:1.2.0'
 
 }
